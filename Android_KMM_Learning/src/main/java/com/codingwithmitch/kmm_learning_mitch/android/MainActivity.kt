@@ -1,20 +1,20 @@
 package com.codingwithmitch.kmm_learning_mitch.android
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
 import com.codingwithmitch.kmm_learning_mitch.Greeting
-import android.widget.TextView
+import com.codingwithmitch.kmm_learning_mitch.android.presentation.navigation.Navigation
 
-fun greet(): String {
-    return Greeting().greeting()
-}
-
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+class MainActivity : AppCompatActivity()
+{
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContent()
+        {
+            Navigation()
+        }
 
-        val tv: TextView = findViewById(R.id.text_view)
-        tv.text = greet()
     }
 }
