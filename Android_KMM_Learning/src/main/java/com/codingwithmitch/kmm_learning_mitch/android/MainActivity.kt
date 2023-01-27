@@ -6,6 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.navigation.Navigation
 import com.codingwithmitch.kmm_learning_mitch.datasource.network.KtorClientFactory
+import com.codingwithmitch.kmm_learning_mitch.datasource.network.model.RecipeDto
+import com.codingwithmitch.kmm_learning_mitch.datasource.network.toRecipe
+import com.codingwithmitch.kmm_learning_mitch.domain.util.DatetimeUtil
 import dagger.hilt.android.AndroidEntryPoint
 import io.ktor.client.request.*
 import kotlinx.coroutines.CoroutineScope
@@ -18,6 +21,7 @@ const val BASE_URL = "https://food2fork.ca/api/recipe"
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity()
 {
+    @OptIn(ExperimentalStdlibApi::class)
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
@@ -25,13 +29,15 @@ class MainActivity : AppCompatActivity()
         val ktorClient=KtorClientFactory().build()
         CoroutineScope(IO).launch {
             val recipeId=1551
-            val recipe=ktorClient.get<String>()
+            val recipeDto=ktorClient.get<RecipeDto>()
             {
-//                url("$BASE_URL/get?id=$recipeId")
-                url("$BASE_URL/search/?page=1&query=kale")
+                url("$BASE_URL/get?id=$recipeId")
+//                url("$BASE_URL/search/?page=1&query=kale")
                 header("Authorization", TOKEN)
-            }
-            Log.i("mag2851","Ktor Test:${recipe}")
+            }.toRecipe()
+            Log.i("mag2851","Ktor Test:${recipeDto.title}")
+            Log.i("mag2851","Ktor Test:${recipeDto.ingredients}")
+            Log.i("mag2851","Ktor Test:${DatetimeUtil().humanizeDatetime(recipeDto.dateUpdated)}")
         }
 
 
