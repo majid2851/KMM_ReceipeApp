@@ -2,7 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.codingwithmitch.kmm_learning_mitch.android">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
+        android:name=".BaseApplication"
         android:allowBackup="false"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath(Build.kotlinGradlePlugin)
         classpath(Build.buildTools)
+        classpath(Build.hiltGradlePlugin)
         classpath("com.android.tools.build:gradle:7.1.2")
     }
 }

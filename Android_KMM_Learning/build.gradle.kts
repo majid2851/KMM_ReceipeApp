@@ -5,7 +5,7 @@ plugins {
     id(Plugins.androidApplication)
     kotlin(KotlinPlugins.android)
     kotlin(KotlinPlugins.kapt)
-//    id  (Plugins.hilt)
+    id  (Plugins.hilt)
     kotlin(KotlinPlugins.serialization) version Kotlin.version
 }
 
@@ -67,6 +67,7 @@ dependencies {
     implementation(Kotlinx.datetime)
 
     implementation(Ktor.android)
+    implementation ("androidx.core:core-ktx:1.8.0")
 
     debugImplementation(SquareUp.leakCanary)
 }

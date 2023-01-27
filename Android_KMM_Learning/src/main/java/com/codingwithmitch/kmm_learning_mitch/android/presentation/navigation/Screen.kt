@@ -6,4 +6,5 @@ sealed class Screen(val route:String)
     object ReceipeDetail:Screen("recipeDetail")
 
 
+
 }
