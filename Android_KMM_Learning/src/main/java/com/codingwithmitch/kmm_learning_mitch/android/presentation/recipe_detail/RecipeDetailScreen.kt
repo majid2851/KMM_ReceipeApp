@@ -2,16 +2,17 @@ package com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_detai
 
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import com.codingwithmitch.kmm_learning_mitch.domain.model.Recipe
 
 @Composable
-fun RecipeDetailScreen(receipeId:Int?)
+fun RecipeDetailScreen(receipe:Recipe?)
 {
-    if (receipeId==null)
+    if (receipe==null)
     {
         Text("ERROR")
     }else
     {
-        Text("RecipeDetailId=${receipeId}")
+        Text("RecipeDetailId=${receipe.title}")
 
     }
 

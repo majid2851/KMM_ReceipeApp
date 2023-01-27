@@ -6,8 +6,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class RecipeListViewModel @Inject constructor(private val savedStateHandle: SavedStateHandle)
-    :ViewModel()
+class RecipeListViewModel
+    @Inject constructor(private val
+    savedStateHandle: SavedStateHandle) :ViewModel()
 {
 
 

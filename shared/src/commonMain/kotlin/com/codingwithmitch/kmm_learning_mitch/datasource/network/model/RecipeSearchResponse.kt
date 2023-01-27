@@ -11,5 +11,5 @@ data class RecipeSearchResponse(
     @SerialName("previous")
     val previous: Any,
     @SerialName("results")
-    val results: List<Result>
+    val results: List<RecipeDto>
 )
