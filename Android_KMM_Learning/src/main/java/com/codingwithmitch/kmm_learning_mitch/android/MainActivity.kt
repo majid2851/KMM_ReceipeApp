@@ -27,7 +27,8 @@ class MainActivity : AppCompatActivity()
             val recipeId=1551
             val recipe=ktorClient.get<String>()
             {
-                url("$BASE_URL/get?id=$recipeId")
+//                url("$BASE_URL/get?id=$recipeId")
+                url("$BASE_URL/search/?page=1&query=kale")
                 header("Authorization", TOKEN)
             }
             Log.i("mag2851","Ktor Test:${recipe}")
