@@ -3,7 +3,7 @@ package com.codingwithmitch.kmm_learning_mitch.datasource.network.model
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 @Serializable
-data class NetworkDto(
+data class RecipeDto(
 //    @SerialName("cooking_instructions")
 //    val cookingInstructions: Any,
     @SerialName("date_added")
