@@ -9,10 +9,10 @@ fun RecipeDetailScreen(receipe:Recipe?)
 {
     if (receipe==null)
     {
-        Text("ERROR")
+        Text("Receipe is Null")
     }else
     {
-        Text("RecipeDetailId=${receipe.title}")
+        Text("${receipe.title}")
 
     }
 

@@ -1,6 +1,7 @@
 package com.codingwithmitch.kmm_learning_mitch.android.di
 
 import com.codingwithmitch.kmm_learning_mitch.datasource.network.RecipeService
+import com.codingwithmitch.kmm_learning_mitch.interactors.recipe_detail.GetRecipe
 import com.codingwithmitch.kmm_learning_mitch.interactors.recipe_list.SearchRecipe
 import dagger.Module
 import dagger.Provides
@@ -18,7 +19,12 @@ object InteractorsModule
     {
         return SearchRecipe( recipeService)
     }
-
+    @Singleton
+    @Provides
+    fun provideGetRecipe(recipeService: RecipeService):GetRecipe
+    {
+        return GetRecipe( recipeService)
+    }
 
 
 
