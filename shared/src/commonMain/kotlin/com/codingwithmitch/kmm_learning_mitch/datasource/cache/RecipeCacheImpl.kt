@@ -20,7 +20,7 @@ class RecipeCacheImpl(
             featured_image = recipe.featuredImage,
             rating = recipe.rating.toLong(),
             source_url = recipe.sourceUrl,
-            ingredients =,
+            ingredients =recipe.ingredients.convertIngeridientToString(),
             date_updated = datetimeUtil.toEpochMilliseconds(recipe.dateUpdated),
             date_added = datetimeUtil.toEpochMilliseconds(recipe.dateAdded)
 
@@ -39,25 +39,24 @@ class RecipeCacheImpl(
     {
         return queries.searchRecipes(
             query=query,
-            pageSize = RECIPE_PAGINATION_PAGE_SIZE,
-            offset = ((page-1)* RECIPE_PAGINATION_PAGE_SIZE)
-        ).executeAsList()//
+            pageSize = RECIPE_PAGINATION_PAGE_SIZE.toLong(),
+            offset = ((page-1)* RECIPE_PAGINATION_PAGE_SIZE).toLong()
+        ).executeAsList().toRecipeList()//
     }
 
     override fun getAll(page: Int): List<Recipe>
     {
-        return queries.searchRecipes(
-            pageSize = RECIPE_PAGINATION_PAGE_SIZE,
-            offset = ((page-1)* RECIPE_PAGINATION_PAGE_SIZE)
-        ).executeAsList()//
+        return queries.getAllRecipes(
+            pageSize = RECIPE_PAGINATION_PAGE_SIZE.toLong(),
+            offset = ((page-1)* RECIPE_PAGINATION_PAGE_SIZE).toLong()).executeAsList().toRecipeList()//
     }
 
     override fun get(recipeId: Int): Recipe?
     {
         return try
         {
-            queries.
-                getRecipeById(id = recipeId.toLong()).executeAsOne()
+            queries.getRecipeById(id = recipeId.toLong()).executeAsOne()
+                .toRecipe()
 
 
         }catch (e:NullPointerException){
