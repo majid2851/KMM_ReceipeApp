@@ -6,17 +6,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.codingwithmitch.kmm_learning_mitch.android.di.Dummy
-import com.codingwithmitch.kmm_learning_mitch.datasource.network.RecipeService
 import com.codingwithmitch.kmm_learning_mitch.domain.model.Recipe
-import com.codingwithmitch.kmm_learning_mitch.domain.util.DatetimeUtil
 import com.codingwithmitch.kmm_learning_mitch.interactors.recipe_detail.GetRecipe
-import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import javax.inject.Inject
 
 @OptIn(ExperimentalStdlibApi::class)

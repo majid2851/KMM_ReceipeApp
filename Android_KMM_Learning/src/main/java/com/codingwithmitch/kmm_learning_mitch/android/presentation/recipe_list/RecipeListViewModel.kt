@@ -4,9 +4,8 @@ import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.codingwithmitch.kmm_learning_mitch.interactors.recipe_list.SearchRecipe
+import com.codingwithmitch.kmm_learning_mitch.interactors.recipe_list.SearchRecipes
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
@@ -14,14 +13,14 @@ import javax.inject.Inject
 @HiltViewModel
 class RecipeListViewModel
     @Inject constructor(private val savedStateHandle: SavedStateHandle,
-                        private val searchRecipe:SearchRecipe) :ViewModel()
+                        private val searchRecipes:SearchRecipes) :ViewModel()
 {
     init {
         loadRecipe()
     }
     private fun loadRecipe()
     {
-        searchRecipe.excute(page = 1, query = "chicken")
+        searchRecipes.excute(page = 1, query = "chicken")
             .onEach()
             {dataState ->
                 Log.i("mag2851-RecipeListLoad:","${dataState.isLoading}")

@@ -1,5 +1,6 @@
 package com.codingwithmitch.kmm_learning_mitch.interactors.recipe_detail
 
+import com.codingwithmitch.kmm_learning_mitch.datasource.cache.RecipeCache
 import com.codingwithmitch.kmm_learning_mitch.datasource.network.RecipeService
 import com.codingwithmitch.kmm_learning_mitch.domain.model.Recipe
 import com.codingwithmitch.kmm_learning_mitch.domain.util.DataState
@@ -7,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.descriptors.PrimitiveKind
 
-class GetRecipe(private val recipeService:RecipeService)
+class GetRecipe(private val recipeCache: RecipeCache)
 {
     fun excute(id:Int):Flow<DataState<Recipe>>
     {
@@ -16,7 +17,7 @@ class GetRecipe(private val recipeService:RecipeService)
             emit(DataState.isLoading())
             try
             {
-                val recipe=recipeService.get(id)
+                val recipe=recipeCache.get(id)
                 emit(DataState(null,recipe))
             }catch (e:Exception)
             {
