@@ -4,6 +4,7 @@ import com.codingwithmitch.kmm_learning_mitch.datasource.cache.RecipeCache
 import com.codingwithmitch.kmm_learning_mitch.datasource.network.RecipeService
 import com.codingwithmitch.kmm_learning_mitch.domain.model.Recipe
 import com.codingwithmitch.kmm_learning_mitch.domain.util.DataState
+import com.squareup.sqldelight.logs.LogSqliteDriver
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -31,7 +32,8 @@ class SearchRecipes(
                 emit(DataState.data(message =null , data = cacheResult))
             }catch (e:Exception)
             {
-                emit(DataState.error<List<Recipe>>(message = e.message?:"UnKnown Error!"))
+                emit(DataState.error<List<Recipe>>
+                    (message = e.message?:"UnKnown Error!"))
             }
         }
     }

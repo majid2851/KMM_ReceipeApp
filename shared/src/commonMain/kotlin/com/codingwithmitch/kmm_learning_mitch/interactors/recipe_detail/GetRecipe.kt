@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.descriptors.PrimitiveKind
 
-class GetRecipe(private val recipeCache: RecipeCache)
+class GetRecipe(private val recipeCache: RecipeCache,private val recipeService: RecipeService)
 {
     fun excute(id:Int):Flow<DataState<Recipe>>
     {
@@ -16,8 +16,8 @@ class GetRecipe(private val recipeCache: RecipeCache)
         {
             emit(DataState.isLoading())
             try
-            {
-                val recipe=recipeCache.get(id)
+            {   /*I used recipeService becuase there was a problem in recipeCache*/
+                val recipe=recipeService.get(id)
                 emit(DataState(null,recipe))
             }catch (e:Exception)
             {

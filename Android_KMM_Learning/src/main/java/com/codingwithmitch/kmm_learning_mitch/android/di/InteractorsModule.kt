@@ -22,9 +22,9 @@ object InteractorsModule
     }
     @Singleton
     @Provides
-    fun provideGetRecipe(recipeCache: RecipeCache):GetRecipe
+    fun provideGetRecipe(recipeCache: RecipeCache,recipeService: RecipeService):GetRecipe
     {
-        return GetRecipe(recipeCache)
+        return GetRecipe(recipeCache,recipeService)
     }
 
 

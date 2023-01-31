@@ -14,7 +14,6 @@ interface RecipeCache
     fun getAll(page: Int):List<Recipe>
 
     /*this throws is just because of ios client*/
-    @Throws(NullPointerException::class)
     fun get(recipeId:Int):Recipe?
 
 
