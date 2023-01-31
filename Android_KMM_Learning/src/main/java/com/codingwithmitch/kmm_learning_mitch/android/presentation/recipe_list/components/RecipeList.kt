@@ -5,7 +5,9 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.unit.dp
 import com.codingwithmitch.food2forkcompose.presentation.theme.AppTheme
+import com.codingwithmitch.kmm_learning_mitch.android.presentation.components.RECIPE_IMAGE_HEIGHT
 import com.codingwithmitch.kmm_learning_mitch.domain.model.Recipe
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterialApi::class)
@@ -19,6 +21,7 @@ fun RecipeList(
     if (loading==true && recipes.isEmpty())
     {
         /*Loading Condition*/
+        LoadingRecipeListShimmer(RECIPE_IMAGE_HEIGHT.dp,)
 
     }
     else if (recipes.isEmpty())

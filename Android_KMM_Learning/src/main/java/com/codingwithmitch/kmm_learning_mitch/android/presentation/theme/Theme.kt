@@ -48,7 +48,7 @@ fun AppTheme(
         .background(color =Grey1)
     ){
       content()
-      CircularIndeterminateProgressBar(displayProgressBar,0.3f)
+      CircularIndeterminateProgressBar(displayProgressBar,0.5f)
 
     }
   }
