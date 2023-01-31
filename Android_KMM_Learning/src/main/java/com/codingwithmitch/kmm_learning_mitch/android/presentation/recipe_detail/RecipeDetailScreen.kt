@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import com.codingwithmitch.food2forkcompose.presentation.theme.AppTheme
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.components.RecipeImgage
+import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_list.components.RecipeCard
 import com.codingwithmitch.kmm_learning_mitch.domain.model.Recipe
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterialApi::class)
@@ -20,7 +21,11 @@ fun RecipeDetailScreen(receipe:Recipe?)
             Text("Receipe is Null,")
         }else
         {
-            RecipeImgage(url = receipe.featuredImage, contentDescription ="" )
+            RecipeCard(recipe = receipe)
+            {
+
+            }
+//            RecipeImgage(url = receipe.featuredImage, contentDescription =receipe.title )
 
         }
     }
