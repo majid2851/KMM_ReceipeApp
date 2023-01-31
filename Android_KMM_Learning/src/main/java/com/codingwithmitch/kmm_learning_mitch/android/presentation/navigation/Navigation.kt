@@ -27,7 +27,7 @@ fun Navigation()
                 val myViewModel:RecipeListViewModel = viewModel(key="RecipeListViewModel",
                     factory = factory)
 
-               RecipeListScreen(onSelectRecipe = {recipeId->
+               RecipeListScreen(myViewModel.state.value,onSelectRecipe = {recipeId->
                     navController.navigate(Screen.ReceipeDetail.route+"/$recipeId")
                })
             }

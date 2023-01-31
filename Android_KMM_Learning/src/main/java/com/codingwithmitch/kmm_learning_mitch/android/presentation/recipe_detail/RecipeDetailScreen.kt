@@ -16,18 +16,9 @@ fun RecipeDetailScreen(receipe:Recipe?)
 {
     AppTheme(displayProgressBar = false)
     {
-        if (receipe==null)
-        {
-            Text("Receipe is Null,")
-        }else
-        {
-            RecipeCard(recipe = receipe)
-            {
+        if (receipe!=null)
+        RecipeCard(recipe = receipe) {}
 
-            }
-//            RecipeImgage(url = receipe.featuredImage, contentDescription =receipe.title )
-
-        }
     }
 
 
