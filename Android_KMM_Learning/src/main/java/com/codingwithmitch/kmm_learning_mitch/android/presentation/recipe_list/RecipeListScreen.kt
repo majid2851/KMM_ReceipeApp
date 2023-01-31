@@ -28,19 +28,10 @@ fun RecipeListScreen(
     onSelectRecipe:(Int)->Unit)
 {
 
-    if (state.isLoading==true && state.recipe.isEmpty())
+    AppTheme(displayProgressBar = state.isLoading)
     {
-        /*Loading Condition*/
-
-    }
-    else if (state.recipe.isEmpty())
-    {
-        /*Nothing to show ,empty list*/
-
-    }else
-    {
-       RecipeList(loading = state.isLoading, recipes =
-           state.recipe, onClickRecipeListItem =onSelectRecipe )
+        RecipeList(loading = state.isLoading, recipes =
+        state.recipe, onClickRecipeListItem =onSelectRecipe )
     }
 
 

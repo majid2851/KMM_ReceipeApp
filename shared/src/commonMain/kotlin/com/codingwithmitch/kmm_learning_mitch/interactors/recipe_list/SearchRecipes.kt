@@ -5,6 +5,7 @@ import com.codingwithmitch.kmm_learning_mitch.datasource.network.RecipeService
 import com.codingwithmitch.kmm_learning_mitch.domain.model.Recipe
 import com.codingwithmitch.kmm_learning_mitch.domain.util.DataState
 import com.squareup.sqldelight.logs.LogSqliteDriver
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -21,7 +22,9 @@ class SearchRecipes(
             try
             {
                 val recipes=recipeService.search(page,query)
+
                 recipeCache.insert(recipes)
+
                 val cacheResult=if (query.isBlank())
                 {
                     recipeCache.getAll(page=page)

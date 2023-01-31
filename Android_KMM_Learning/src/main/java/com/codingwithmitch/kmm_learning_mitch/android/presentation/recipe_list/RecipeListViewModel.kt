@@ -29,6 +29,7 @@ class RecipeListViewModel
             .onEach()
             {dataState ->
                 state.value=state.value.copy(isLoading = dataState.isLoading)
+                Log.i("mag2851-loading",dataState.isLoading.toString())
 
                 dataState.data?.let()
                 {recipes->

@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.codingwithmitch.kmm_learning_mitch.android.presentation.components.CircularIndeterminateProgressBar
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.theme.*
 
 private val LightThemeColors = lightColors(
@@ -47,9 +48,8 @@ fun AppTheme(
         .background(color =Grey1)
     ){
       content()
-      if(displayProgressBar){
-        // TODO("Show indeterminate progress bar")
-      }
+      CircularIndeterminateProgressBar(displayProgressBar,0.3f)
+
     }
   }
 }

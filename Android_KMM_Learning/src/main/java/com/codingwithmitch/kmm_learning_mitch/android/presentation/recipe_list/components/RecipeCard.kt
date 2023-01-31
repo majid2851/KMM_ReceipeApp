@@ -15,6 +15,7 @@ import com.codingwithmitch.kmm_learning_mitch.android.presentation.components.RE
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.components.RecipeImgage
 import com.codingwithmitch.kmm_learning_mitch.domain.model.Recipe
 
+const val RECIPE_CARD_HEIGHT=340
 @Composable
 fun RecipeCard(recipe:Recipe,onClick:()->Unit)
 {
@@ -22,6 +23,7 @@ fun RecipeCard(recipe:Recipe,onClick:()->Unit)
         shape= MaterialTheme.shapes.small,
         modifier = Modifier
             .fillMaxWidth()
+            .height(RECIPE_CARD_HEIGHT.dp)
             .padding(bottom = 6.dp, top = 6.dp)
             .clickable(onClick = onClick)
             , elevation = 8.dp
@@ -34,7 +36,8 @@ fun RecipeCard(recipe:Recipe,onClick:()->Unit)
                 start = 8.dp, end = 8.dp))
             {
                 Text(text = recipe.title, modifier =
-                Modifier.fillMaxWidth(.85f).wrapContentWidth(align = Alignment.Start),
+                Modifier.fillMaxWidth(.85f).wrapContentWidth(align = Alignment.Start)
+                    .align(Alignment.CenterVertically),
                 style = MaterialTheme.typography.h3)
 
                 Text(text = recipe.rating.toString(), modifier = Modifier

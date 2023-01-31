@@ -16,8 +16,18 @@ fun RecipeList(
     onClickRecipeListItem:(Int)->Unit,
 )
 {
-    AppTheme(displayProgressBar = false)
+    if (loading==true && recipes.isEmpty())
     {
+        /*Loading Condition*/
+
+    }
+    else if (recipes.isEmpty())
+    {
+        /*Nothing to show ,empty list*/
+
+    }else
+    {
+
         LazyColumn()
         {
             itemsIndexed(items=recipes)
@@ -29,7 +39,11 @@ fun RecipeList(
             }
         }
 
+
     }
+
+
+
 
 
 
