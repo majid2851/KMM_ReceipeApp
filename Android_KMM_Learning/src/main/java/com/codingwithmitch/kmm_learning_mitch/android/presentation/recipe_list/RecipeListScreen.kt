@@ -11,6 +11,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -20,6 +21,7 @@ import com.codingwithmitch.kmm_learning_mitch.android.presentation.components.Gr
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_list.components.RecipeCard
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_list.components.RecipeList
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_list.components.SearchAppBar
+import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.FoodCategoryUtil
 import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeListEvents
 import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeStateList
 
@@ -34,13 +36,15 @@ fun RecipeListScreen(
 
     AppTheme(displayProgressBar = state.isLoading)
     {
+        val foodCategory= remember {FoodCategoryUtil().getAllFoodCategories()}
         Scaffold(topBar = { SearchAppBar(query =state.query ,
             onQueryChange = {
                 onTrigerEvent(RecipeListEvents.onUpdateQuery(it))
             },
             onExcuteSearch = {
                onTrigerEvent(RecipeListEvents.newSearch)
-            })})
+            }, categories = foodCategory)
+        })
         {
             RecipeList(loading = state.isLoading, recipes =
             state.recipe, onClickRecipeListItem =onSelectRecipe,
