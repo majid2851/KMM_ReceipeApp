@@ -43,7 +43,12 @@ fun RecipeListScreen(
             },
             onExcuteSearch = {
                onTrigerEvent(RecipeListEvents.newSearch)
-            }, categories = foodCategory)
+            },
+            selectedCategory=state.selectedCategory,
+            categories = foodCategory,
+            onSelectCategory = {
+                onTrigerEvent(RecipeListEvents.onSelectCategory(it))
+            })
         })
         {
             RecipeList(loading = state.isLoading, recipes =

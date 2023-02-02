@@ -2,6 +2,7 @@ package com.codingwithmitch.kmm_learning_mitch.android.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.HiltViewModelFactory
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -15,6 +16,7 @@ import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_detail
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_list.RecipeListScreen
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_list.RecipeListViewModel
 
+@Preview
 @Composable
 fun Navigation()
 {

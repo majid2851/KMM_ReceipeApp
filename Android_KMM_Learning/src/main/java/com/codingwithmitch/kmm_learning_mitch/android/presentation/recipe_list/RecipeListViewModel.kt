@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.codingwithmitch.kmm_learning_mitch.domain.model.Recipe
 import com.codingwithmitch.kmm_learning_mitch.interactors.recipe_list.SearchRecipes
+import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.FoodCategory
 import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeListEvents
 import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeStateList
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -42,7 +43,11 @@ class RecipeListViewModel
             }
             is RecipeListEvents.onUpdateQuery->
             {
-                state.value=state.value.copy(query = event.query)
+                state.value=state.value.copy(query = event.query, selectedCategory = null)
+            }
+            is RecipeListEvents.onSelectCategory->
+            {
+                selectCategory(event.category)
             }
             else->
             {
@@ -52,6 +57,11 @@ class RecipeListViewModel
 
 
 
+    }
+
+    private fun selectCategory(category: FoodCategory) {
+        state.value=state.value.copy(query = category.value, selectedCategory = category)
+        newSearch()
     }
 
     private fun newSearch() {

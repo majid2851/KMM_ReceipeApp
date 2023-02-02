@@ -6,5 +6,6 @@ data class RecipeStateList(
     val isLoading:Boolean=false,
     val page:Int=1,
     val query:String="",
+    val selectedCategory:FoodCategory?=null,
     val recipe:List<Recipe> = listOf()
 )
