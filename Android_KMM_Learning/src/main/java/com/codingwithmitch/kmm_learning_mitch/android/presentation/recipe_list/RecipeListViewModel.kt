@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.codingwithmitch.kmm_learning_mitch.domain.model.Recipe
 import com.codingwithmitch.kmm_learning_mitch.interactors.recipe_list.SearchRecipes
+import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeListEvents
 import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeStateList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -21,8 +22,43 @@ class RecipeListViewModel
 {
     val state:MutableState<RecipeStateList> = mutableStateOf(RecipeStateList())
     init {
-        loadRecipe()
+        trigerEvent(RecipeListEvents.LoadRecipes)
     }
+    fun trigerEvent(event:RecipeListEvents)
+    {
+        when(event)
+        {
+            RecipeListEvents.LoadRecipes ->
+            {
+                loadRecipe()
+            }
+            RecipeListEvents.nextPage->
+            {
+                goNextPage()
+            }
+            else->
+            {
+                handleError("")
+            }
+        }
+
+
+
+    }
+
+    private fun handleError(error:String) {
+
+
+    }
+
+    private fun goNextPage()
+    {
+        state.value=state.value.copy(page = state.value.page+1)
+        loadRecipe()
+
+
+    }
+
     private fun loadRecipe()
     {
         searchRecipes.excute(page = state.value.page, query = state.value.query)
@@ -37,7 +73,8 @@ class RecipeListViewModel
                 }
                 dataState.message?.let()
                 {message->
-                    Log.i("mag2851->RecipeListMsg:", message)
+                    handleError(message)
+//                    Log.i("mag2851->RecipeListMsg:", message)
                 }
 
 

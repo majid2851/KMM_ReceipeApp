@@ -16,8 +16,6 @@ class MainActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
 
 
-
-
         setContent()
         {
             Navigation()

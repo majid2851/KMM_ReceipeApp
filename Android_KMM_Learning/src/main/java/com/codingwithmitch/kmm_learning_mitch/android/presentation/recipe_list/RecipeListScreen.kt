@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -18,6 +19,8 @@ import com.codingwithmitch.food2forkcompose.presentation.theme.AppTheme
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.components.GradientDemo
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_list.components.RecipeCard
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_list.components.RecipeList
+import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_list.components.SearchAppBar
+import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeListEvents
 import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeStateList
 
 
@@ -25,14 +28,24 @@ import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeSta
 @Composable
 fun RecipeListScreen(
     state:RecipeStateList,
-//    ,event:()->{}
+    onTrigerEvent:(RecipeListEvents)->Unit,
     onSelectRecipe:(Int)->Unit)
 {
 
     AppTheme(displayProgressBar = state.isLoading)
     {
+        Scaffold(topBar = { SearchAppBar(query =state.query ,
+            onQueryChange = ,/*Update query*/
+            onExcuteSearch = {
+                /*OnExcuteSearch*/
+            })})
+        {
+
+
+        }
         RecipeList(loading = state.isLoading, recipes =
-        state.recipe, onClickRecipeListItem =onSelectRecipe )
+        state.recipe, onClickRecipeListItem =onSelectRecipe,
+            page = state.page, onTrigerNextPage = {onTrigerEvent(RecipeListEvents.nextPage)})
     }
 
 

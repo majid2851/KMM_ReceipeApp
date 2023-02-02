@@ -29,7 +29,7 @@ fun Navigation()
 
                RecipeListScreen(myViewModel.state.value,onSelectRecipe = {recipeId->
                     navController.navigate(Screen.ReceipeDetail.route+"/$recipeId")
-               })
+               }, onTrigerEvent = {myViewModel.trigerEvent(it)})
             }
 
 
