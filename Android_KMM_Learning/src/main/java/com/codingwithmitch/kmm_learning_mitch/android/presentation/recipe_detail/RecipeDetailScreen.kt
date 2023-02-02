@@ -5,8 +5,10 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.tooling.preview.Preview
 import com.codingwithmitch.food2forkcompose.presentation.theme.AppTheme
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.components.RecipeImgage
+import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_detail.component.RecipeView
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_list.components.RecipeCard
 import com.codingwithmitch.kmm_learning_mitch.domain.model.Recipe
 
@@ -17,7 +19,10 @@ fun RecipeDetailScreen(receipe:Recipe?)
     AppTheme(displayProgressBar = false)
     {
         if (receipe!=null)
-        RecipeCard(recipe = receipe) {}
+        {
+            RecipeView(recipe = receipe)
+        }
+
 
     }
 
