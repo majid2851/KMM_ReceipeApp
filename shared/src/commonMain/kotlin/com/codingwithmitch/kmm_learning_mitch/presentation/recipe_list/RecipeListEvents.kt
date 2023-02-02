@@ -6,6 +6,8 @@ sealed class RecipeListEvents
 
     object nextPage:RecipeListEvents()
 
+    object newSearch:RecipeListEvents()
 
+    data class onUpdateQuery(val query:String):RecipeListEvents()
 
 }

@@ -31,10 +31,8 @@ fun RecipeList(
     else if (recipes.isEmpty())
     {
         /*Nothing to show ,empty list*/
-
     }else
     {
-
         LazyColumn()
         {
             itemsIndexed(items=recipes)

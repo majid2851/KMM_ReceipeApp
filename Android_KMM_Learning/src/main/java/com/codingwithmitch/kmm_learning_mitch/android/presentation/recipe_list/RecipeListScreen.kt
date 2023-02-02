@@ -35,17 +35,19 @@ fun RecipeListScreen(
     AppTheme(displayProgressBar = state.isLoading)
     {
         Scaffold(topBar = { SearchAppBar(query =state.query ,
-            onQueryChange = ,/*Update query*/
+            onQueryChange = {
+                onTrigerEvent(RecipeListEvents.onUpdateQuery(it))
+            },
             onExcuteSearch = {
-                /*OnExcuteSearch*/
+               onTrigerEvent(RecipeListEvents.newSearch)
             })})
         {
-
+            RecipeList(loading = state.isLoading, recipes =
+            state.recipe, onClickRecipeListItem =onSelectRecipe,
+                page = state.page, onTrigerNextPage = {onTrigerEvent(RecipeListEvents.nextPage)})
 
         }
-        RecipeList(loading = state.isLoading, recipes =
-        state.recipe, onClickRecipeListItem =onSelectRecipe,
-            page = state.page, onTrigerNextPage = {onTrigerEvent(RecipeListEvents.nextPage)})
+
     }
 
 

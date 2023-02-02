@@ -36,6 +36,14 @@ class RecipeListViewModel
             {
                 goNextPage()
             }
+            RecipeListEvents.newSearch->
+            {
+                newSearch()
+            }
+            is RecipeListEvents.onUpdateQuery->
+            {
+                state.value=state.value.copy(query = event.query)
+            }
             else->
             {
                 handleError("")
@@ -46,17 +54,22 @@ class RecipeListViewModel
 
     }
 
+    private fun newSearch() {
+        state.value=state.value.copy(page = 1, recipe = listOf())
+        loadRecipe()
+
+    }
+
     private fun handleError(error:String) {
 
 
     }
 
+
     private fun goNextPage()
     {
         state.value=state.value.copy(page = state.value.page+1)
         loadRecipe()
-
-
     }
 
     private fun loadRecipe()

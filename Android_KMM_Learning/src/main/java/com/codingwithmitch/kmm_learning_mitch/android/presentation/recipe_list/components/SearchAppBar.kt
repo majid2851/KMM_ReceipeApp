@@ -42,7 +42,7 @@ fun SearchAppBar(
             )
             {
                 TextField(value = query,
-                    onValueChange = {onQueryChange },
+                    onValueChange = {onQueryChange(it) },
                     label = { Text("Search...") },
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Text,
