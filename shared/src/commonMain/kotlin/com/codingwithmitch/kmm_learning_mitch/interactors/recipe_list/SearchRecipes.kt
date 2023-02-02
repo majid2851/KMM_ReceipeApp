@@ -23,10 +23,13 @@ class SearchRecipes(
             {
                 val recipes=recipeService.search(page,query)
 
+                if (query.equals("error"))
+                    throw Exception("mag2851")
+
+
                 recipeCache.insert(recipes)
 
 //                delay(500)
-
                 val cacheResult=if (query.isBlank())
                 {
                     recipeCache.getAll(page=page)

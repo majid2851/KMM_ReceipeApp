@@ -2,7 +2,6 @@ package com.codingwithmitch.food2forkcompose.presentation.theme
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -10,7 +9,9 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.components.CircularIndeterminateProgressBar
+import com.codingwithmitch.kmm_learning_mitch.android.presentation.components.ProcessDialogQueue
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.theme.*
+import com.codingwithmitch.kmm_learning_mitch.domain.util.Queue
 
 private val LightThemeColors = lightColors(
   primary = Blue600,
@@ -18,13 +19,13 @@ private val LightThemeColors = lightColors(
   onPrimary = Black2,
   secondary = Color.White,
   secondaryVariant = Teal300,
-  onSecondary = Color.Black,
+//  onSecondary = Color.Black,
   error = RedErrorDark,
   onError = RedErrorLight,
   background = Grey1,
   onBackground = Color.Black,
   surface = Color.White,
-  onSurface = Black2,
+//  onSurface = Black2,
 )
 private val DarkColors= darkColors(
 
@@ -35,6 +36,7 @@ private val DarkColors= darkColors(
 @Composable
 fun AppTheme(
   displayProgressBar: Boolean,
+  dialogQueue:Queue<String> = Queue(mutableListOf()),
   content: @Composable () -> Unit,
 ) {
   MaterialTheme(
@@ -45,8 +47,9 @@ fun AppTheme(
     Box(
       modifier = Modifier
         .fillMaxSize()
-        .background(color =Grey1)
+        .background(color = Grey1)
     ){
+      ProcessDialogQueue(dialogQueue = dialogQueue)
       content()
       CircularIndeterminateProgressBar(displayProgressBar,0.5f)
 

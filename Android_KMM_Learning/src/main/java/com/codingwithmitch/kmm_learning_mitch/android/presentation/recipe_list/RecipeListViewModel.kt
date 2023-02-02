@@ -71,8 +71,9 @@ class RecipeListViewModel
     }
 
     private fun handleError(error:String) {
-
-
+        val queue=state.value.queue
+        queue.add(error)
+        state.value=state.value.copy(queue = queue)
     }
 
 
