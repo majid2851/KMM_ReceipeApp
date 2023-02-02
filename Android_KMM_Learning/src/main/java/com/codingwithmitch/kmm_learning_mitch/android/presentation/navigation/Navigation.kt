@@ -15,6 +15,7 @@ import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_detail
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_detail.RecipeDetailViewModel
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_list.RecipeListScreen
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_list.RecipeListViewModel
+import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_detail.RecipeDetailEvents
 
 @Preview
 @Composable
@@ -42,7 +43,9 @@ fun Navigation()
                 val myViewModel:RecipeDetailViewModel = viewModel(key="RecipeDetailViewModel",
                     factory = factory)
 
-                RecipeDetailScreen(receipe = myViewModel.recipe.value)
+                RecipeDetailScreen(
+                    state = myViewModel.state.value,
+                    onTrigerEvent=myViewModel::onTriggerEvent)
             }
     }
 }

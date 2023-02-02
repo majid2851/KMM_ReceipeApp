@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.codingwithmitch.kmm_learning_mitch.domain.model.Recipe
 import com.codingwithmitch.kmm_learning_mitch.interactors.recipe_detail.GetRecipe
+import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_detail.RecipeDetailEvents
+import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_detail.RecipeDetailState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -20,17 +22,39 @@ class RecipeDetailViewModel @Inject
     constructor(private val savedStateHandle: SavedStateHandle,
                 private val getRecipe: GetRecipe):ViewModel()
 {
-    val recipe:MutableState<Recipe?> = mutableStateOf(null)
+    val state:MutableState<RecipeDetailState> = mutableStateOf(RecipeDetailState())
     init
     {
         savedStateHandle.get<Int>("recipeId")?.let()
         { recipeId->
             viewModelScope.launch()
             {
-                getRecipe(recipeId)
+                onTriggerEvent(RecipeDetailEvents.GetRecipe(recipeId))
             }
 
         }
+    }
+
+    fun onTriggerEvent(event:RecipeDetailEvents)
+    {
+        when(event)
+        {
+            is RecipeDetailEvents.GetRecipe->
+            {
+                getRecipe(event.recipeId)
+            }
+            else ->
+            {
+                 handleError("")
+            }
+
+        }
+    }
+
+    private fun handleError(error: String)
+    {
+
+
     }
 
     private fun getRecipe(recipeId:Int)
@@ -41,12 +65,12 @@ class RecipeDetailViewModel @Inject
 
             dataState.data?.let()
             {it->
-                Log.i("mag2851-RecipeItem:","${it}")
-                recipe.value=it
+
+                state.value=state.value.copy(recipe = it)
             }
             dataState.message?.let()
             {message->
-                Log.i("mag2851->RecipeMsg:", message)
+                handleError(message)
             }
 
         }.launchIn(viewModelScope)

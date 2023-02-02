@@ -11,16 +11,27 @@ import com.codingwithmitch.kmm_learning_mitch.android.presentation.components.Re
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_detail.component.RecipeView
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_list.components.RecipeCard
 import com.codingwithmitch.kmm_learning_mitch.domain.model.Recipe
+import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_detail.RecipeDetailEvents
+import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_detail.RecipeDetailState
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterialApi::class)
 @Composable
-fun RecipeDetailScreen(receipe:Recipe?)
+fun RecipeDetailScreen(
+    state:RecipeDetailState,
+    onTrigerEvent:(RecipeDetailEvents)->Unit
+)
 {
-    AppTheme(displayProgressBar = false)
+    AppTheme(displayProgressBar = state.isLoading)
     {
-        if (receipe!=null)
+        if (state.recipe==null && state.isLoading)
         {
-            RecipeView(recipe = receipe)
+            //loading
+        }else if (state.recipe==null && state.isLoading==false)
+        {
+            //nothing to show
+        }else
+        {
+            RecipeView(recipe = state.recipe!!)
         }
 
 
