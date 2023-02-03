@@ -20,7 +20,9 @@ fun GenericDialog(
 )
 {
     AlertDialog(
-        onDismissRequest = {},
+        onDismissRequest = {
+
+        },
         text = {
            if (description!=null)
            {

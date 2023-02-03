@@ -1,18 +1,20 @@
 package com.codingwithmitch.kmm_learning_mitch.domain.util
 
+import com.codingwithmitch.food2forkkmm.domain.model.GenericMessageInfo
+
 data class DataState<T>(
-    val message:String?=null,
+    val message:GenericMessageInfo?=null,
     val data:T?=null,
     val isLoading:Boolean=false
 )
 {
     companion object
     {
-        fun <T> error(message:String,):DataState<T>
+        fun <T> error(message:GenericMessageInfo,):DataState<T>
         {
             return DataState(message=message)
         }
-        fun <T> data(message: String ?=null,data:T ?=null):DataState<T>
+        fun <T> data(message: GenericMessageInfo ?=null,data:T ?=null):DataState<T>
         {
             return DataState(message=message,data = data)
         }

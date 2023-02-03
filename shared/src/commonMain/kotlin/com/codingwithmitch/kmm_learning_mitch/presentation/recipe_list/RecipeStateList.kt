@@ -1,5 +1,6 @@
 package com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list
 
+import com.codingwithmitch.food2forkkmm.domain.model.GenericMessageInfo
 import com.codingwithmitch.kmm_learning_mitch.domain.model.Recipe
 import com.codingwithmitch.kmm_learning_mitch.domain.util.Queue
 
@@ -9,5 +10,5 @@ data class RecipeStateList(
     val query:String="",
     val selectedCategory:FoodCategory?=null,
     val recipe:List<Recipe> = listOf(),
-    val queue:Queue<String> = Queue(mutableListOf())
+    val queue:Queue<GenericMessageInfo> = Queue(mutableListOf())
 )
