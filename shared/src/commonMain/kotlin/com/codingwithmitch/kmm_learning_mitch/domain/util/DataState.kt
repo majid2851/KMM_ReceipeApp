@@ -10,9 +10,9 @@ data class DataState<T>(
 {
     companion object
     {
-        fun <T> error(message:GenericMessageInfo,):DataState<T>
+        fun <T> error(message: GenericMessageInfo.Builder,):DataState<T>
         {
-            return DataState(message=message)
+            return DataState(message=message.build(), data = null)
         }
         fun <T> data(message: GenericMessageInfo ?=null,data:T ?=null):DataState<T>
         {

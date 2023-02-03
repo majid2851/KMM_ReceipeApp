@@ -6,7 +6,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.codingwithmitch.food2forkkmm.domain.model.GenericMessageInfo
 import com.codingwithmitch.kmm_learning_mitch.domain.model.Recipe
+import com.codingwithmitch.kmm_learning_mitch.domain.model.UiComponentType
 import com.codingwithmitch.kmm_learning_mitch.interactors.recipe_list.SearchRecipes
 import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.FoodCategory
 import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeListEvents
@@ -51,7 +53,12 @@ class RecipeListViewModel
             }
             else->
             {
-                handleError("")
+                appendToMessageQueue(
+                    GenericMessageInfo.Builder()
+                    .id("RecipeList.Error")
+                    .title("Error")
+                    .uiComponentType(UiComponentType.Dialog)
+                    .description("Invalid Event").build())
             }
         }
 
@@ -70,9 +77,9 @@ class RecipeListViewModel
 
     }
 
-    private fun handleError(error:String) {
+    private fun appendToMessageQueue(msgInfo:GenericMessageInfo) {
         val queue=state.value.queue
-        queue.add(error)
+        queue.add(msgInfo)
         state.value=state.value.copy(queue = queue)
     }
 
@@ -97,8 +104,7 @@ class RecipeListViewModel
                 }
                 dataState.message?.let()
                 {message->
-                    handleError(message)
-//                    Log.i("mag2851->RecipeListMsg:", message)
+                    appendToMessageQueue(message)
                 }
 
 

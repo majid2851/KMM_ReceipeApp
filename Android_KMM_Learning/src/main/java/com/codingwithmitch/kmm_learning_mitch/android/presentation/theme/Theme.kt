@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import com.codingwithmitch.food2forkkmm.domain.model.GenericMessageInfo
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.components.CircularIndeterminateProgressBar
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.components.ProcessDialogQueue
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.theme.*
@@ -36,7 +37,7 @@ private val DarkColors= darkColors(
 @Composable
 fun AppTheme(
   displayProgressBar: Boolean,
-  dialogQueue:Queue<String> = Queue(mutableListOf()),
+  dialogQueue:Queue<GenericMessageInfo> = Queue(mutableListOf()),
   content: @Composable () -> Unit,
 ) {
   MaterialTheme(
