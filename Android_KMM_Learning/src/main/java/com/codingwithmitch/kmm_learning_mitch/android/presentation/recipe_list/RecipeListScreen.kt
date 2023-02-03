@@ -21,7 +21,13 @@ fun RecipeListScreen(
     onSelectRecipe:(Int)->Unit)
 {
 
-    AppTheme(displayProgressBar = state.isLoading, dialogQueue = state.queue)
+    AppTheme(
+        displayProgressBar = state.isLoading,
+        dialogQueue = state.queue,
+        onRemoveHeadQueue =
+        {
+            onTrigerEvent(RecipeListEvents.OnRemoveHeadMessageFromQueue)
+        })
     {
         val foodCategory= remember {FoodCategoryUtil().getAllFoodCategories()}
         Scaffold(topBar = { SearchAppBar(query =state.query ,

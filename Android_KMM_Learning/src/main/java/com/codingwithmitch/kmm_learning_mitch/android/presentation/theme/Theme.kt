@@ -13,6 +13,7 @@ import com.codingwithmitch.kmm_learning_mitch.android.presentation.components.Ci
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.components.ProcessDialogQueue
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.theme.*
 import com.codingwithmitch.kmm_learning_mitch.domain.util.Queue
+import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeListEvents
 
 private val LightThemeColors = lightColors(
   primary = Blue600,
@@ -38,6 +39,7 @@ private val DarkColors= darkColors(
 fun AppTheme(
   displayProgressBar: Boolean,
   dialogQueue:Queue<GenericMessageInfo> = Queue(mutableListOf()),
+  onRemoveHeadQueue:()->Unit,
   content: @Composable () -> Unit,
 ) {
   MaterialTheme(
@@ -50,7 +52,10 @@ fun AppTheme(
         .fillMaxSize()
         .background(color = Grey1)
     ){
-      ProcessDialogQueue(dialogQueue = dialogQueue)
+      ProcessDialogQueue(
+        dialogQueue = dialogQueue,
+        onRemoveHeadFromQueue = onRemoveHeadQueue
+      )
       content()
       CircularIndeterminateProgressBar(displayProgressBar,0.5f)
 

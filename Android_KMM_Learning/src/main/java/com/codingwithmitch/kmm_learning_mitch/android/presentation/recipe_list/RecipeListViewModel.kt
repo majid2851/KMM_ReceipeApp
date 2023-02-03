@@ -7,8 +7,12 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.codingwithmitch.food2forkkmm.domain.model.GenericMessageInfo
+import com.codingwithmitch.food2forkkmm.domain.model.NegativeAction
+import com.codingwithmitch.food2forkkmm.domain.model.PositiveAction
 import com.codingwithmitch.kmm_learning_mitch.domain.model.Recipe
 import com.codingwithmitch.kmm_learning_mitch.domain.model.UiComponentType
+import com.codingwithmitch.kmm_learning_mitch.domain.util.GenericMessageInfoUtilQueue
+import com.codingwithmitch.kmm_learning_mitch.domain.util.Queue
 import com.codingwithmitch.kmm_learning_mitch.interactors.recipe_list.SearchRecipes
 import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.FoodCategory
 import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeListEvents
@@ -16,7 +20,9 @@ import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeSta
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 @HiltViewModel
 class RecipeListViewModel
@@ -26,7 +32,13 @@ class RecipeListViewModel
     val state:MutableState<RecipeStateList> = mutableStateOf(RecipeStateList())
     init {
         trigerEvent(RecipeListEvents.LoadRecipes)
+
+        // EXAMPLE
+//        testAlertMsg()
+
     }
+
+
     fun trigerEvent(event:RecipeListEvents)
     {
         when(event)
@@ -51,6 +63,9 @@ class RecipeListViewModel
             {
                 selectCategory(event.category)
             }
+            is RecipeListEvents.OnRemoveHeadMessageFromQueue->{
+                removeHeadMsg()
+            }
             else->
             {
                 appendToMessageQueue(
@@ -66,6 +81,21 @@ class RecipeListViewModel
 
     }
 
+    private fun removeHeadMsg()
+    {
+        try
+        {
+            val queue=state.value.queue
+            queue.remove()
+            state.value=state.value.copy(queue = Queue(mutableListOf()))/*force recompose*/
+            state.value=state.value.copy(queue = queue)
+
+        }catch (e:Exception)
+        {
+
+        }
+    }
+
     private fun selectCategory(category: FoodCategory) {
         state.value=state.value.copy(query = category.value, selectedCategory = category)
         newSearch()
@@ -77,10 +107,18 @@ class RecipeListViewModel
 
     }
 
-    private fun appendToMessageQueue(msgInfo:GenericMessageInfo) {
-        val queue=state.value.queue
-        queue.add(msgInfo)
-        state.value=state.value.copy(queue = queue)
+    private fun appendToMessageQueue(msgInfo:GenericMessageInfo)
+    {
+        if(!GenericMessageInfoUtilQueue().doesMessageAlready(
+                queue = state.value.queue, messageInfo = msgInfo
+        ))
+        {
+            val queue=state.value.queue
+            queue.add(msgInfo)
+            state.value=state.value.copy(queue = queue)
+        }
+
+
     }
 
 
@@ -120,6 +158,30 @@ class RecipeListViewModel
     }
 
 
+    private fun testAlertMsg()
+    {
+        val messageInfoBuilder = GenericMessageInfo.Builder()
+            .id(UUID.randomUUID().toString())
+            .title("Weird")
+            .uiComponentType(UiComponentType.Dialog)
+            .description("I don't know what's happening.")
+            .positive(PositiveAction(
+                positiveBtnTxt = "OK",
+                onPositiveAction = {
+                    // do something special??
+                    state.value = state.value.copy(query = "Kale")
+                    trigerEvent(RecipeListEvents.newSearch)
+                }
+            ))
+            .negative(NegativeAction(
+                negativeBtnTxt = "Cancel",
+                onNegativeAction = {
+                    state.value = state.value.copy(query = "Cookies")
+                    trigerEvent(RecipeListEvents.newSearch)
+                }
+            ))
+        appendToMessageQueue(msgInfo = messageInfoBuilder.build())
+    }
 
 
 }

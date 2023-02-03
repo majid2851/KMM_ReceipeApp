@@ -9,9 +9,12 @@ import androidx.lifecycle.viewModelScope
 import com.codingwithmitch.food2forkkmm.domain.model.GenericMessageInfo
 import com.codingwithmitch.kmm_learning_mitch.domain.model.Recipe
 import com.codingwithmitch.kmm_learning_mitch.domain.model.UiComponentType
+import com.codingwithmitch.kmm_learning_mitch.domain.util.GenericMessageInfoUtilQueue
+import com.codingwithmitch.kmm_learning_mitch.domain.util.Queue
 import com.codingwithmitch.kmm_learning_mitch.interactors.recipe_detail.GetRecipe
 import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_detail.RecipeDetailEvents
 import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_detail.RecipeDetailState
+import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeListEvents
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -45,6 +48,9 @@ class RecipeDetailViewModel @Inject
             {
                 getRecipe(event.recipeId)
             }
+            is RecipeDetailEvents.OnRemoveHeadMessageFromQueue->{
+                removeHeadMsg()
+            }
             else ->
             {
                 appendToMessageQueue(
@@ -58,13 +64,33 @@ class RecipeDetailViewModel @Inject
         }
     }
 
-    private fun appendToMessageQueue(msgInfo: GenericMessageInfo) {
-        val queue=state.value.queue
-        queue.add(msgInfo)
-        state.value=state.value.copy(queue = queue)
+    private fun appendToMessageQueue(msgInfo: GenericMessageInfo)
+    {
+        if(!GenericMessageInfoUtilQueue().doesMessageAlready(
+                queue = state.value.queue, messageInfo = msgInfo
+            ))
+        {
+            val queue=state.value.queue
+            queue.add(msgInfo)
+            state.value=state.value.copy(queue = queue)
+        }
+
     }
 
+    private fun removeHeadMsg()
+    {
+        try
+        {
+            val queue=state.value.queue
+            queue.remove()
+            state.value=state.value.copy(queue = Queue(mutableListOf()))/*force recompose*/
+            state.value=state.value.copy(queue = queue)
 
+        }catch (e:Exception)
+        {
+
+        }
+    }
 
     private fun getRecipe(recipeId:Int)
     {
