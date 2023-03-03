@@ -47,7 +47,7 @@ kotlin {
         homepage = "Link to the Shared Module homepage"
         ios.deploymentTarget = "14.1"
         frameworkName = "shared"
-        podfile = project.file("../iosFood2Fork/Podfile")
+        podfile = project.file("../Ios_KMM_Learning/Podfile")
     }
 
     sourceSets {
