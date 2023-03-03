@@ -61,6 +61,7 @@ class RecipeListViewModel
             }
             is RecipeListEvents.onSelectCategory->
             {
+
                 selectCategory(event.category)
             }
             is RecipeListEvents.OnRemoveHeadMessageFromQueue->{

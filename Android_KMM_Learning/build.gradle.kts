@@ -70,6 +70,9 @@ dependencies {
     implementation ("androidx.core:core-ktx:1.8.0")
 
     debugImplementation(SquareUp.leakCanary)
+
+    implementation ("androidx.lifecycle:lifecycle-viewmodel:2.5.1")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
 }
 
 
