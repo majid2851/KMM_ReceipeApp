@@ -13,20 +13,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object CacheModule
 {
-    @Singleton
-    @Provides
-    fun provideRecipeDatabase(context:BaseApplication):
-        RecipeDB
-    {
-        return RecipeDatabaseFactory(driverFactory = DriverFactory(context)).createDatabase()
-    }
-
-    @Singleton
-    @Provides
-    fun provideRecipeCache(recipeDB: RecipeDB):RecipeCache
-    {
-        return RecipeCacheImpl(recipeDB, datetimeUtil = DatetimeUtil())
-    }
 
 
 
