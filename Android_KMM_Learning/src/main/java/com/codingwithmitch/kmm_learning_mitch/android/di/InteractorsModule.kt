@@ -1,6 +1,5 @@
 package com.codingwithmitch.kmm_learning_mitch.android.di
 
-import com.codingwithmitch.kmm_learning_mitch.datasource.cache.RecipeCache
 import com.codingwithmitch.kmm_learning_mitch.datasource.network.RecipeService
 import com.codingwithmitch.kmm_learning_mitch.interactors.recipe_detail.GetRecipe
 import com.codingwithmitch.kmm_learning_mitch.interactors.recipe_list.SearchRecipes
@@ -16,15 +15,15 @@ object InteractorsModule
 {
     @Singleton
     @Provides
-    fun provideSearchRecipe(recipeService: RecipeService,recipeCache: RecipeCache):SearchRecipes
+    fun provideSearchRecipe(recipeService: RecipeService,):SearchRecipes
     {
-        return SearchRecipes( recipeService,recipeCache)
+        return SearchRecipes( recipeService,)
     }
     @Singleton
     @Provides
-    fun provideGetRecipe(recipeCache: RecipeCache,recipeService: RecipeService):GetRecipe
+    fun provideGetRecipe(recipeService: RecipeService):GetRecipe
     {
-        return GetRecipe(recipeCache,recipeService)
+        return GetRecipe(recipeService)
     }
 
 

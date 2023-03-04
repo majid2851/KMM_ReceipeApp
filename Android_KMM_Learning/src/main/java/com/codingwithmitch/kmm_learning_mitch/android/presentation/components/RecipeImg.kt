@@ -44,6 +44,8 @@ fun RecipeImgage(
 
             }
         }
+
+        else -> {}
     }
 
 
