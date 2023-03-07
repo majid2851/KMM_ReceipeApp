@@ -94,7 +94,8 @@ class RecipeDetailViewModel @Inject
 
     private fun getRecipe(recipeId:Int)
     {
-        getRecipe.excute(recipeId).onEach()
+        getRecipe.excute(recipeId)
+            .collectCommon(coroutineScope = viewModelScope)
         {dataState ->
             Log.i("mag2851-RecipeLoad:","${dataState.isLoading}")
 
@@ -108,7 +109,7 @@ class RecipeDetailViewModel @Inject
                 appendToMessageQueue(message)
             }
 
-        }.launchIn(viewModelScope)
+        }
 
     }
 

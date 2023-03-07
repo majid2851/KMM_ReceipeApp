@@ -1,14 +1,16 @@
 import SwiftUI
+import shared
 
 @main
 struct iOSApp: App
 {
-    private val networkModule=NetworkModule()
+    private let networkModule=NetworkModule()
+    
     
 	var body: some Scene
     {
 		WindowGroup {
-			ContentView()
+			RecipeListScreen(networkModule: networkModule)
 		}
 	}
 }

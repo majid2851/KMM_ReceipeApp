@@ -132,7 +132,7 @@ class RecipeListViewModel
     private fun loadRecipe()
     {
         searchRecipes.excute(page = state.value.page, query = state.value.query)
-            .onEach()
+            .collectCommon(coroutineScope = viewModelScope)
             {dataState ->
                 state.value=state.value.copy(isLoading = dataState.isLoading)
                 Log.i("mag2851-loading",dataState.isLoading.toString())
@@ -147,7 +147,7 @@ class RecipeListViewModel
                 }
 
 
-            }.launchIn(viewModelScope)
+            }
     }
     private fun appendRecipes(recipes:List<Recipe>)
     {

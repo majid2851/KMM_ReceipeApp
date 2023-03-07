@@ -4,15 +4,16 @@ import com.codingwithmitch.food2forkkmm.domain.model.GenericMessageInfo
 import com.codingwithmitch.kmm_learning_mitch.datasource.network.RecipeService
 import com.codingwithmitch.kmm_learning_mitch.domain.model.Recipe
 import com.codingwithmitch.kmm_learning_mitch.domain.model.UiComponentType
+import com.codingwithmitch.kmm_learning_mitch.domain.util.CommonFlow
 import com.codingwithmitch.kmm_learning_mitch.domain.util.DataState
-import kotlinx.coroutines.flow.Flow
+import com.codingwithmitch.kmm_learning_mitch.domain.util.asCommonFlow
 import kotlinx.coroutines.flow.flow
 
 class SearchRecipes(
     private val recipeService:RecipeService,
 )
 {
-    fun excute(page:Int,query:String):Flow<DataState<List<Recipe>>>
+    fun excute(page:Int,query:String):CommonFlow<DataState<List<Recipe>>>
     {
         return flow()
         {
@@ -39,7 +40,7 @@ class SearchRecipes(
                     .description(e.message?:"Unknown Error")
                 ))
             }
-        }
+        }.asCommonFlow()
     }
 
 
