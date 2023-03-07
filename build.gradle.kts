@@ -1,4 +1,5 @@
 buildscript {
+    val kotlin_version by extra("1.8.20-Beta")
     repositories {
         gradlePluginPortal()
         jcenter()
@@ -11,6 +12,7 @@ buildscript {
         classpath(Build.hiltGradlePlugin)
         classpath(Build.sqlDelightGradlePlugin)
         classpath("com.android.tools.build:gradle:7.4.2")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
     }
 }
 
