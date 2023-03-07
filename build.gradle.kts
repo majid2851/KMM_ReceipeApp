@@ -1,5 +1,5 @@
 buildscript {
-    val kotlin_version by extra("1.8.20-Beta")
+    val kotlin_version by extra("1.7.10")
     repositories {
         gradlePluginPortal()
         jcenter()

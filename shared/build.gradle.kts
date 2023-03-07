@@ -30,9 +30,9 @@ android {
         create("testReleaseApi")
     }
 }
-dependencies {
-    implementation("androidx.core:core-ktx:+")
-}
+//dependencies {
+    //implementation("androidx.core:core-ktx:+")
+//}
 
 kotlin {
     android()

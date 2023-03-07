@@ -9,19 +9,21 @@
 /* Begin PBXBuildFile section */
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
+		1CB7AB4929B5C736008A499F /* RecipeListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB7AB4829B5C736008A499F /* RecipeListScreen.swift */; };
+		1CB7AB4B29B5CEC8008A499F /* RecipeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CB7AB4A29B5CEC8008A499F /* RecipeListViewModel.swift */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
-		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		CC7BA0EB30AF87C09385FF5A /* Pods_Ios_KMM_Learning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3933D031FA315AE561017C52 /* Pods_Ios_KMM_Learning.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1CB7AB4829B5C736008A499F /* RecipeListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListScreen.swift; sourceTree = "<group>"; };
+		1CB7AB4A29B5CEC8008A499F /* RecipeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewModel.swift; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		2B6F45A39017C83C4AA01C50 /* Pods-Ios_KMM_Learning.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ios_KMM_Learning.release.xcconfig"; path = "Target Support Files/Pods-Ios_KMM_Learning/Pods-Ios_KMM_Learning.release.xcconfig"; sourceTree = "<group>"; };
 		3933D031FA315AE561017C52 /* Pods_Ios_KMM_Learning.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ios_KMM_Learning.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF7B242A565900829871 /* Ios_KMM_Learning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ios_KMM_Learning.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FF5E612D7AA0E1860E3A21D8 /* Pods-Ios_KMM_Learning.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ios_KMM_Learning.debug.xcconfig"; path = "Target Support Files/Pods-Ios_KMM_Learning/Pods-Ios_KMM_Learning.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -46,6 +48,23 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		1CB7AB4629B5C6BF008A499F /* presentation */ = {
+			isa = PBXGroup;
+			children = (
+				1CB7AB4729B5C6DE008A499F /* recipe_list */,
+			);
+			path = presentation;
+			sourceTree = "<group>";
+		};
+		1CB7AB4729B5C6DE008A499F /* recipe_list */ = {
+			isa = PBXGroup;
+			children = (
+				1CB7AB4829B5C736008A499F /* RecipeListScreen.swift */,
+				1CB7AB4A29B5CEC8008A499F /* RecipeListViewModel.swift */,
+			);
+			path = recipe_list;
+			sourceTree = "<group>";
+		};
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
@@ -67,8 +86,8 @@
 		7555FF7D242A565900829871 /* Ios_KMM_Learning */ = {
 			isa = PBXGroup;
 			children = (
+				1CB7AB4629B5C6BF008A499F /* presentation */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
-				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
@@ -82,7 +101,6 @@
 				FF5E612D7AA0E1860E3A21D8 /* Pods-Ios_KMM_Learning.debug.xcconfig */,
 				2B6F45A39017C83C4AA01C50 /* Pods-Ios_KMM_Learning.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -190,8 +208,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CB7AB4929B5C736008A499F /* RecipeListScreen.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
-				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				1CB7AB4B29B5CEC8008A499F /* RecipeListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@ plugins {
     kotlin(KotlinPlugins.kapt)
     id  (Plugins.hilt)
     kotlin(KotlinPlugins.serialization) version Kotlin.version
+
 }
 
 android {
@@ -62,6 +63,7 @@ dependencies {
 
     implementation(Hilt.hiltAndroid)
     implementation(Hilt.hiltNavigation)
+
     kapt(Hilt.hiltCompiler)
 
     implementation(Kotlinx.datetime)
