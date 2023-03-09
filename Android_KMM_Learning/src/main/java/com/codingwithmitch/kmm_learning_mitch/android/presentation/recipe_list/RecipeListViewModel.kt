@@ -16,7 +16,7 @@ import com.codingwithmitch.kmm_learning_mitch.domain.util.Queue
 import com.codingwithmitch.kmm_learning_mitch.interactors.recipe_list.SearchRecipes
 import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.FoodCategory
 import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeListEvents
-import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeStateList
+import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -29,7 +29,7 @@ class RecipeListViewModel
     @Inject constructor(private val savedStateHandle: SavedStateHandle,
                         private val searchRecipes:SearchRecipes) :ViewModel()
 {
-    val state:MutableState<RecipeStateList> = mutableStateOf(RecipeStateList())
+    val state:MutableState<RecipeListState> = mutableStateOf(RecipeListState())
     init {
         trigerEvent(RecipeListEvents.LoadRecipes)
 

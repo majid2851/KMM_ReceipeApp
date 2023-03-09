@@ -1,0 +1,5 @@
+package com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list
+
+expect class RecipeListState
+
+const val RECIPE_PAGINATION_PAGE_SIZE=30

@@ -10,13 +10,13 @@ import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_list.c
 import com.codingwithmitch.kmm_learning_mitch.android.presentation.recipe_list.components.SearchAppBar
 import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.FoodCategoryUtil
 import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeListEvents
-import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeStateList
+import com.codingwithmitch.kmm_learning_mitch.presentation.recipe_list.RecipeListState
 
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterialApi::class)
 @Composable
 fun RecipeListScreen(
-    state:RecipeStateList,
+    state: RecipeListState,
     onTrigerEvent:(RecipeListEvents)->Unit,
     onSelectRecipe:(Int)->Unit)
 {

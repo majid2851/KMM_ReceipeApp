@@ -24,19 +24,21 @@ struct RecipeListScreen: View
     
     var body: some View
     {
-        VStack//Column in jetpack
+        List
         {
-            Text("\(viewModel.state.page)")
-            Button(
-                action:{
-                    viewModel.updateState(page:Int(viewModel.state.page)+1)
-                },
-                label:{
-                    Text("Increment Page")
-                }
-            )
-        
-            
+            ForEach(viewModel.state.recipe,id:\.self.id)
+            {recipe in
+                Text(recipe.title).onAppear(perform:{
+                    if(viewModel.shouldQueryNextPage(recipe: recipe))
+                    {
+                        viewModel.onTriggerEvent(stateEvent: RecipeListEvents.nextPage())
+                    }
+                    
+                })
+                
+                
+                
+            }
         }
         
         
