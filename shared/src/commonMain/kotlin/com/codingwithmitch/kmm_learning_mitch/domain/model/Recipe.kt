@@ -1,6 +1,5 @@
 package com.codingwithmitch.kmm_learning_mitch.domain.model
 
-import kotlinx.datetime.LocalDateTime
 
 
 data class Recipe (
@@ -11,6 +10,4 @@ data class Recipe (
      val rating: Int,
      val sourceUrl: String,
      val ingredients: List<String> = listOf(),
-     val dateAdded: LocalDateTime,
-     val dateUpdated: LocalDateTime,
 )

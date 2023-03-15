@@ -7,6 +7,7 @@ plugins {
     kotlin(KotlinPlugins.kapt)
     id  (Plugins.hilt)
     kotlin(KotlinPlugins.serialization) version Kotlin.version
+
 }
 
 android {
@@ -32,7 +33,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
-        useIR = true
+       // useIR = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Compose.composeVersion
@@ -62,6 +63,7 @@ dependencies {
 
     implementation(Hilt.hiltAndroid)
     implementation(Hilt.hiltNavigation)
+
     kapt(Hilt.hiltCompiler)
 
     implementation(Kotlinx.datetime)
@@ -70,6 +72,12 @@ dependencies {
     implementation ("androidx.core:core-ktx:1.8.0")
 
     debugImplementation(SquareUp.leakCanary)
+
+    implementation ("androidx.lifecycle:lifecycle-viewmodel:2.5.1")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+
+    implementation ("androidx.navigation:navigation-compose:2.5.1")
+
 }
 
 

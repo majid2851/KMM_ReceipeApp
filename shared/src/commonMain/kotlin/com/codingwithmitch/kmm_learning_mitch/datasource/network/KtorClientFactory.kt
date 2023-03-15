@@ -11,7 +11,7 @@ expect class KtorClientFactory() {
 
     fun RecipeDto.toRecipe(): Recipe
     {
-        val datetimeUtil=DatetimeUtil()
+
         return Recipe(
             id=pk,
             title=title,
@@ -20,8 +20,6 @@ expect class KtorClientFactory() {
             publisher = publisher,
             sourceUrl = sourceUrl,
             ingredients = ingredients,
-            dateAdded =datetimeUtil.toLocalDate(longDateAdded.toDouble()),//why double instead of long
-            dateUpdated=datetimeUtil.toLocalDate(longDateUpdated.toDouble()),
         )
     }
 

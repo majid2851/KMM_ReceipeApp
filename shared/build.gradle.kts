@@ -30,6 +30,9 @@ android {
         create("testReleaseApi")
     }
 }
+//dependencies {
+    //implementation("androidx.core:core-ktx:+")
+//}
 
 kotlin {
     android()
@@ -47,13 +50,13 @@ kotlin {
         homepage = "Link to the Shared Module homepage"
         ios.deploymentTarget = "14.1"
         frameworkName = "shared"
-        podfile = project.file("../iosFood2Fork/Podfile")
+        podfile = project.file("../Ios_KMM_Learning/Podfile")
     }
 
     sourceSets {
         val commonMain by getting {
             dependencies{
-                implementation(Kotlinx.datetime)
+                //implementation(Kotlinx.datetime)
                 implementation(Ktor.core)
                 implementation(Ktor.clientSerialization)
                 implementation(SQLDelight.runtime)

@@ -50,12 +50,7 @@ fun RecipeView(
                         style = MaterialTheme.typography.h5)
                 }
                 val dateTimeUtil= remember {DatetimeUtil()}
-                Text(modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                    text="Updated at " +
-                            "${dateTimeUtil.humanizeDatetime(recipe.dateUpdated)} by "
-                            +recipe.publisher, style = MaterialTheme.typography.caption)
+
 
                 for (item in recipe.ingredients)
                 {
