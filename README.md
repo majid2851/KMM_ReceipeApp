@@ -21,8 +21,10 @@ Hilt
 iOS Specific Components
 SwiftUI (still incompleted)
 
-![clean_architecture_kmm](https://user-images.githubusercontent.com/46685643/231428526-37d165a1-f082-4e6d-af29-e02842586f69.png)
+![Screenshot_1681731552](https://user-images.githubusercontent.com/46685643/232487079-1631be50-79fb-46ab-9c76-9bc2fbcc00e8.png)
 
+
+![Screenshot_1681731563](https://user-images.githubusercontent.com/46685643/232487095-96054c45-f908-4834-a47b-67d26b2ad29f.png)
 
 
 
